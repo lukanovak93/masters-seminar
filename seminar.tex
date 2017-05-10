@@ -1,0 +1,302 @@
+\documentclass[seminar, utf8, numeric]{fer}
+
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{booktabs}
+\usepackage{url}
+
+\graphicspath{ {/home/luka/Documents/Diplomski seminar} }
+
+\begin{document}
+
+% TODO: Navedite naslov rada.
+\title{Primjena dubokog učenja u pametnim prometnim sustavima}
+
+% TODO: Navedite svoje ime i prezime.
+\author{Luka Novak}
+
+% TODO: Navedite ime i prezime mentora.
+\voditelj{Prof. dr. sc. Sven Lončarić}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Uvod}
+Od samih početaka ljudskog postojanja, uvidjelo se da je moguće automatizirati radnje koje se ponavljaju. Isto tako, pokušavalo se prebaciti teret i neki fizički rad sa čovjeka na stroj. Tako je u početku izumljen kotač. On je nastao da olakša čovjeku fizičke poslove nošenja i prebacivanja nekog tereta. Kako se ljudska rasa razvijala i napredovala tako je rasla i količina posla koja je prebačena na strojeve. Kako čovječanstvo više na-
+preduje, i strojevi postaju sve sofisticiraniji. Ono što danas imamo i što smo kao vrsta postigli, ljudi prije 1000 ili 100 godina nisu mogli niti pojmiti. Došli smo do pojmova kao što su umjetna inteligencija, strojno učenje, duboko učenje itd. Danas više gotovo da i ne pišemo rukom, ne hodamo pješice, ne penjemo se stepenicama... Pokušava se čovjeka osloboditi što više svakodnevnih radnji. To se događa i sa prometom. Postoje navigacijski uređaji pa današnji vozači ne moraju niti razmišlajti kako doći do odredišta. No to nam nije dovoljno. Razvitkom umjetne inteligencije razvila se i ideja o
+autonomnoj vožnji, "vožnji bez vozača". Je li to uopće moguće? Je li realno očekivati da ćemo doživjeti doba u kojem ljudi više neće ni voziti, nego će to auto obavljati za nas? Gdje usmjeriti istraživačke snage i potencijal ako želimo doći do potpune autonomne vožnje? Ovo su neka od gorućih pitanja oko kojih se diže puno prašine ovih dana. Odgovori na ova, ali i druga pitanja, nalaze se u nastavku.
+
+\chapter{Duboko učenje}
+Da bi bilo uopće moguće objasniti pojam dubokog učenja, moraju biti spomenuta dva osnovna pojma: umjetna inteligencija i strojno učenje. U nastavku je svaki od njih pobliže opisan.
+
+\section{Umjetna inteligencija}
+Inteligencija (lat. intelligere – razabirati, shvaćati, razumijevati) je deskriptivan pojam - opisuje svojstvo neke jedinke ili grupe jedinki, no ne postoji definicija inteligencije oko koje se svi slažu. Slika \ref{fig:slika2_1} prikazuje 4 područja gdje se svaka od definicija umjetne inteligencije može smjestiti. Većina definicija uključuje koncepte kao što su apstraktno rasuđivanje, razumijevanje, samosvijest, komunikacija, učenje, planiranje i rješavanje problema.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{Slika2_1.jpeg}
+\caption{Klasifikacija definicija umjetne inteligencije}
+\label{fig:slika2_1}
+\end{figure}
+
+Marvin Minsky, suosnivač MIT-evog AI laboratorija definirao je umjetnu inteli-
+genciju kao: \textit{“Znanost o tome kako postići da strojevi izvode zadatke koji bi, kada bi ih radio čovjek, iziskivali inteligenciju.”.}
+Na kraju, D.W. Patterson dao je zasad najtočniju definiciju umjetne inteligencije: \textit{“Umjetna inteligencija grana je računarske znanosti koja se bavi proučavanjem i oblikovanjem računarskih sustava koji pokazuju neki oblik inteligencije. Takvi sustavi mogu učiti, mogu donositi zaključke o svijetu koji ih okružuje, oni razumiju prirodni jezik te mogu spoznati i tumačiti složene vizualne scene te obavljati druge vrste vještina za koje se zahtijeva čovjekov tip inteligencije.”}
+
+\section{Strojno učenje}
+Ethem Alpaydin je u svojoj knjizi, jednoj od najpoznatijih knjiga o strojnom učenju, \textit{"Introduction to Machine Learning"} iz 2009. godine strojno učenje definirao kao \textit{"programiranje računala na način da optimiziraju neki kriterij uspješnosti temeljem podatkovnih primjera ili prethodnog iskustva."}.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.35]{Slika2_2.jpg}
+\caption{Vještine koje posjeduje dobar Data Scientist}
+\label{fig:slika2_2}
+\end{figure}
+
+\newpage
+Ostaje pitanje kada koristiti strojno učenje? Ono se ne koristi za neke "mehaničke" zadatke, već za specifične probleme. Možemo definirati 3 kategorije problema u kojima ima smisla koristiti strojno učenje:
+
+\begin{itemize}
+	\item{\textbf{Složeni problemi} - ne postoji ljudsko znanje o procesu ili ljudi ne mogu dati objašnjenje o procesu (problemi koje nije moguće riješiti na klasičan algoritamski način - \textit{UI potpuni problemi})}
+	
+	\item{\textbf{Ogromne količine podataka} - otkivanje znanja u velikim skupovima podataka (engl. \textit{data mining})}
+	
+	\item{\textbf{Sustavi koji se dinamički mijenjaju} - potrebna prilagodba (npr. prilagodba korisničkih sučelja)}
+\end{itemize}
+
+\noindent
+Strojno učenje okosnica je umjetne inteligencije. Intelignetni sustavi trebaju se moći prilagođavati okolini - imati sposobnost učenja.
+
+\section{Duboko učenje}
+Konačno, sada je moguće definirati duboko učenje. To je grana strojnog učenja koja je posebno prikladna za rješavanje problema iz područja umjetne inteligencije. Duboko učenje se temelji na predstavljanju podataka složenim reprezentacijama do kojih se dolazi slijedom naučenih nelinearnih transformacija. Koriste se slojevite strukture, najčešće neuronske mreže (u kojima gradivni modeli najčešće nisu obični neuroni, o vrsti mreže ovisi od čega će biti sagrađena). Duboke mreže, kako im i samo ime kaže, su mreže koje imaju puno slojeva. To mreži omogućava da vidi "širu sliku". Konceptualno, jedinice ulaznog sloja primaju neke podatke (sliku, zvuk, tekst) i obavljaju nelinearne transformacije nad podacima te ih šalju u sljedeći sloj. Tako niži slojevi imaju utjecaj na ono što viši (apstraktniji) slojevi vide, ovisno o vrsti tranformacije nad podacima koju rade. Metode dubokog učenja svoju primjenu pronalaze u izazovnim područjima gdje je dimenzionalnost podataka iznimno velika: računalnom vidu, obradi prirodnog jezika ili razumijevanju govora.
+
+\chapter{Suvremeni pristupi autonomnoj vožnji}
+Danas poznajemo 2 različita pristupa za koje stručnjaci misle da imaju najviše potencijala u području autonomne vožnje:
+
+\begin{enumerate}
+	\item{\textbf{Posrednički pristup} (posrednička percepcija) - analizira cijelu 'scenu' (sve što računalo vidi, sve što kamera snimi $\rightarrow$ parsira sve) i na temelju toga donosi odluke u vožnji}
+	
+	\item{\textbf{Refleksni pristup} - temeljen na ponašanju, postoji sustav odlučivanja i na temelju ulaznog signala (slike) taj sustav odmah mapira dobiveni ulaz na konkretnu akciju}
+\end{enumerate}	
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.50]{Slika1_1.png}
+\caption{Različiti pristupi autonomnoj vožnji}
+\label{fig:pristupi_autonomnoj_vožnji}
+\end{figure}
+
+Slika \ref{fig:pristupi_autonomnoj_vožnji} prikazuje kako koji od 3 pristupa donosi odluke te što pri tome uzima u obzir. U zadnjih nekoliko godina dosšlo je do razvitka 3. paradigme: \textbf{direktni pristup}.
+
+Najbolje rezultate pokazuje baš \textbf{direktni pristup} (direktna percepcija). Ovaj pristup pokušava odmah procijeniti utjecaj pojedine akcije na okolinu. Ovakvo rješenje ovog problema 'pada' direktno između gornja dva pristupa, odnosno uzima najbolje od oba. Autori smatraju da je ovo ispravan stupanj apstrakcije kojim bi se ovo trebalo rješavati. \\ 
+
+Većina današnjih sustava autonomne vožnje temeljena je na posredničkom pristupu. Znanstvenici na području znanstvenog vida su istraživali svaki od dva ključna segmenta posebno:
+
+\begin{itemize}
+	\item{Detekcija automobila}
+	\item{Detekcija prometne trake}
+\end{itemize}
+
+Tipičan algoritam iscrta tzv. \textit{bounding box} oko detektiranih auta na slici te tzv. \textit{splines} na detektirane crte na cesti. No problem je što to nisu direktne informacije koje se koriste u direktnom pristupu. Tipičan model za prepoznavanje prometnih traka kakav predlaže M. Aly u svom radu \textit{Real time detection of lane markers in urban streets.} \cite{lda}. Takav model podložan je malo češćim greškama. Primjerice, vrlo česta greška je prepoznavanje nekih struktura, recimo puknuća asfalta, kao prometne trake (pogotovo iz nekih kutova slike). Ako se naprimjer nalazimo na cesti sa dvije prometne trake, u takvim situacijama je vrlo teško odrediti da li se auto nalazi u lijevoj ili desnoj prometnoj traci. \\
+Primjer ponašajnog modela bio bi \textit{Alvinn} \cite{BehaviouralModel}. Alvinn gleda koliko je vozač zakrenuo volan i direktno povezuje ulaznu sliku s tim podatkom u procesu treniranja. Kasnije donosi odluke i okreće volan na temelju naučenoga. \\
+R. Hadsell sa svojim suradnicima u radu \cite{longRangeVision} trenira višeslojnu konvolucijsku mrežu da odredi sa slike nalazi li se automobil u području kroz koje se može proći ili ne. Za računanje koristi DeepFlow model \cite{deepFlow} za procjenu dubine sa slike.
+
+
+\chapter{Deep Driving} 
+
+\section{Arhitektura}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{AlexNet1.jpg}
+\caption{Arhitektura AlexNet mreže}
+\label{fig:alexNet_1}
+\end{figure}
+
+Slika \ref{fig:alexNet_1} prikazuje arhitekturu konvolucijske mreže tzv. \textit{AlexNet} \cite{alexNet}. Konkretno, mreža je implementirana u programskom okviru \textit{Caffe} i sastoji se od 5 konvolucijskih slojeva (\textit{convolutional layers}) nakon kojih slijede 4 potpuno povezana (\textit{fully connected}) sloja. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.40]{AlexNet_kernels.png}
+\caption{Broj jezgara (kernela) u AlexNet mreži}
+\label{fig:alexNet_kernels}
+\end{figure}
+
+Na slici \ref{fig:alexNet_1} prvi tanki kvadratić prikazuje ulaznu sliku. Zatim slijedi 5 konvolucijskih slojeva koji koriste \textit{max pooling}. Prvi sloj, slike su veličine 224*224*3 dok je receptivno polje (engl. \textit{kernel}) konvolucijskog sloja veličine 11*11*3. Korak je 4 (kernel se pomakne za 4 piksela u svakom koraku). Izlaz iz prvog sloja je veličine 55*55*96. Konvolucijski slojevi na slici su prikazani kao kvadri ili kocke. Na kraju, stupci prikazuju 4 potpuno povezana sloja koji imaju veličine izlaza redom: 4096, 4096, 256 i 13. Slika \ref{fig:alexNet_kernels} prikazuje broj jezgara po pojedinom sloju u AlexNet arhitekturi. Izlaz iz mreže provuće se kroz softmax funkciju: $\sigma(z)_j = \frac{e^{z_j}}{\sum_{k=1}^{K} e^{z_k}}$\\ \\
+Kao funkcija gubitka uzima se Euklidska norma (L2 loss):
+
+\begin{equation}
+E = \frac{1}{2N}\sum_{n=1}^{N}||y_{input} - y_{target}||_2^2 
+\end{equation}
+
+\section{Treniranje}
+Za treniranje je korištena videoigrica TORCS (\textit{The Open Racing
+Car Simulator}). Inače, ova simulacija je često korištena pri treniranju i evaluaciji AI modela autonomne vožnje. Simulator je idealan za takve stvari jer se mogu prikupljati kritične informacije pri vožnji: 
+\begin{itemize}
+	\item{brzinu automobila}
+	\item{relativnu poziciju automobila u odnosu na središnju prometnu traku}
+	\item{udaljenost od vozila koje se nalaze ispred i iza automobila i sl.}
+\end{itemize}
+Prvi korak u fazi treniranja modela je vožnja "\textit{label collecting}" vozila. Ono prikuplja screenshotove (\textit{first person view} perspektiva) te sve ostale relevantne informacije. Te informacije se spremaju te su korištene za kasnije nadzirano učenje modela. 
+ 
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{Torcs.jpg}
+\caption{TORCS videoigrica korištena pri treniranju modela}
+\label{fig:torcs}
+\end{figure}
+
+U fazi testiranja procjene vrijednosti ovih parametara, u svakom koraku, modelu se daje scena iz vožnje. Model zatim procjenjuje parametre koje šalje \textit{drivig control engine}-u koji procjenjuje za koliko treba zakrenuti volan te treba li ubrzati ili kočiti. Zatim se te naredbe šalju simulatoru koji na temelju toga "vozi" automobil. I u ovoj fazi testiranja procjene parametara također se prikupljaju podaci.\\
+
+\subsection{Procjena parametara}
+Ako razmislimo, za modeliranje algoritma autonomne vožnje, ne treba uzimati u obzir sve što postoji na slici. Primjerice, ako cesta ima 4 ili 5 traka, a vozilo u kojem se nalazimo se vozi po vanjskoj lijevoj traci, ne zanima nas što se događa i kakva je situacija u desnoj vanjskoj traci. Dakle, potrebno je selektirati što je bitno i što uzeti u obzir pri modeliranju takvog modela. Dolazi se do zaključka da model treba percipirati samo 3 trake (u najgorem slučaju). Postoji nekoliko situacija u kojima se možemo naći:
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{positions.jpg}
+\caption{Situacije u kojima se vozilo može naći \cite{deepDrive}}
+\label{fig:car_positions}
+\end{figure}
+
+Nadalje, iz perspektive modela, vožnja može biti podijeljena na dvije kategorije:
+\renewcommand{\labelitemi}{\textbullet}
+\begin{itemize}
+	\item vožnja u traci
+	\item promjena trake ili usporavanje radi izbjegavanja sudara (usporava se u slučaju da se vozilo koje se nalazi ispred ne može zaobići jer su trake zauzete)
+\end{itemize}
+Ovdje se predlažu dva koordinatna sustava:
+\renewcommand{\labelitemi}{\textbullet}
+\begin{itemize}
+	\item ''in lane system''
+	\item ''on marking system''
+\end{itemize}
+Kako bi se mogle ostvariti dvije glavne funkcije, percepcija trake i percepcija vozila, predložena su 3 tipa pokazatelja:
+\renewcommand{\labelitemi}{\textbullet}
+\begin{itemize}
+	\item ulazni kut
+	\item udaljenost do okolnih oznaka traka
+	\item udaljenost od vozila ispred
+\end{itemize}
+Ukupno je predloženo 13 indikatora (faktora) relevantnih za ovaj model koji se nalaze na slici \ref{fig:affordance_inidicators}. Ovime se vozilo točno pozicionira pri vožnji.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.8]{affordanceIndicators.jpg}
+\caption{Svih 13 indikatora korištenih u direktnom pristupu \cite{deepDrive}}
+\label{fig:affordance_inidicators}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{AffordanceIndicators2.jpg}
+\caption{Promjena trake u ''in lane system'' i ''on marking system'' načinu rada \cite{deepDrive}}
+\label{fig:promjena_trake}
+\end{figure}
+
+\subsection{Mapiranje procjene parametara na konkretne akcije}
+Okretaj volana izračunava se iz pozicije vozila. Cilj je minimizirati udaljenost vozila od sredine trenutne prometne trake. Formula po kojoj se to izračunava je:
+\begin{equation}
+	steerCmd = C*\frac{angle - distCenter}{roadWidth}
+\end{equation}
+gdje je \textit{C} faktor koji ovisino uvjetima vožnje, a $\textit{angle} \in [-\pi, \pi]$.
+
+\noindent
+Slika \ref{fig:controller_logic} prikazuje pseudokod kontrolera, sustava koji upravlja vožnjom automobila.\\
+
+\pagebreak
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.8]{controllerLogic.jpg}
+\caption{Pseudokod kontrolera \cite{deepDrive}}
+\label{fig:controller_logic}
+\end{figure}
+
+U svakom koraku sustav izračunava $desired\_speed$. Kontroler zatim podešava vozilo na željenu brzinu kontrolirajući gas/kočnicu. U zavojima se brzina smanjuje, pogotovo ako se ispred nalazi vozilo. Da bi ovo bilo zadovoljeno, brzina računa po formuli:
+\begin{equation}
+	v(t) = v_{max}(1-e^{-\frac{c}{v_{max}}dist(t) - d})
+\end{equation} 
+gdje je $dist(t)$ udaljenost od vozila ispred, $v_{max}$ maksimalna dopušten brzina, a $c$ i $d$ koeficijenti koje je potrebno podesiti.
+
+\pagebreak
+\subsection{Proces treniranja}
+U simulatoru TORCS odabrano je 7 traka i 22 vozila za generiranje skupa za učenje. Teksture ceste su za potrebe treniranja zamijenjene sa preko 30 prilagođenih tekstura asfalta sa različitim kombinacijama u varijacijama traka te nijansi asfalta. Također su promijenjeni i obrasci vožnje ostalih automobila da bi se prikupili podaci za različite tipove vožnje.
+Automobile u simulatoru su zatim više puta vozili ljudi kako bi prikupili podatke za učenje modela. Pri vožnji automatski su slikani screenshotovi iz  \textit{first person view} perspektive. Screenshotovi su zatim smanjeni na rezoluciju $280\times210$ te sa ostalim prikupljenim podacima spremani u bazu. \\
+Ukupno je prikupljeno 484,815 slika za treniranje mreže. Zadana je stopa učenja $0.01$ i veličina \textit{mini-batcha} je 64 nasumično odabrane slike iz skupa za treniranje. Nakon 140,000 iteracija, proces treniranja je zaustavljen. 
+
+\section{Testiranje}
+Pri testiranju, podaci koje model dobije su:
+\begin{itemize}
+	\item sliku koju ima vozač (iz automobila)
+	\item brzinu automobila
+\end{itemize}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{ArhitekturaSustava.jpg}
+\caption{Arhitektura sustava}
+\label{fig:sys_arh}
+\end{figure}
+
+Na slici \ref{fig:sys_arh}, \cite{deepDrive} vidljiv je proces kako sustav procesuira sliku, odluči koju akciju napraviti i zatim ju provede. Prvo konvolucijska mreža obradi sliku i procijeni 13 parametara koje, zajedno sa podatkom o brzini, prosljedi kontroleru. Kontroler prema algoritmu sa slike \ref{fig:controller_logic} izračunava upravljačke naredbe koje zatim ponovo vraća simulatoru koji ih provede.
+
+\chapter{Evaluacija}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{Evaluation.jpg}
+\caption{Evaluacija modela - praznim kvadratićima označena je procjena, a punim kvadratičima stvarna pozicija vozila. Na stvarnoj slici iscrtani su samo kvadratići jer ne znamo točne pozicije.}
+\label{fig:evaluate_model}
+\end{figure}
+
+\section{Kvantitativna evaluacija}
+Ovaj model funkcionira vrlo dobro u simulaciji TORCS. Percepcija automobila seže do 30 m. Auti udaljeni između 30 i 60 m od vozila su označena kao male točkice te se ne može pouzdano reći je li to automobil ili neki objekt iz okruženja. No čim taj objekt uđe u doseg 30 m, model ga prepoznaje. \\
+Kako je automobil sredstvo osjetljivo na nagle promjene (npr. smijera, brzine), važno je ostvariti toleranciju na manje greške u procjeni parametara. Parametri se procijenjuju puno puta u sekundi, te nebi bilo dobro kada bi se za svaku malu promjenu u parametrima, vozilo pomaknulo razmjerno promjeni. 
+
+\pagebreak
+\section{Evaluacija u usporedbi s drugim modelima i pristupima}
+\subsection{Ponašajni pristup}
+Ponašajni model direktno mapira ulaz na konkretnu akciju (zakret volana). Pri treniranju modela Deep Driving korištena su dva tipa treniranja:
+\begin{itemize}
+	\item 60000 slika sa vožnje na praznoj traci
+	\item 80000 slika sa vožnje na traci gdje se nalaze i druga vozila
+\end{itemize} 
+Ponašajni model se dobro snalazi na praznoj traci, nema problema u praćenju trake, no problemi se javljaju u drugom slučaju kada model nije sam na cesti. Model donekle pokazuje sposobnost izbjegavanja sudara skretanjem lijevo ili desno, no putanja je nejasna, i javlja se dosta grešaka. Model je nepredvidiv i kao tak ne predstavlja idealno rješenje problema autonomne vožnje.
+
+\subsection{Posrednički pristup - detekcija traka}
+Za ovu usporedbu korišten je model \cite{lda}. Pošto je taj model relativno slab korišteni su manji skupovi za trening i test fazu. Slike za te skupove odabrane su sa iste trake i bolje su rezolucije $640 \times 480$. I sa ovakvim olakotnim okolnostima, ovaj model je i dalje slabiji od Deep Driving modela. 
+
+\section{Evaluacija na stvarnim podacima}
+\subsection{Video snimljen pametnim telefonom}
+Slika 5.1.b prikazuje ovu situaciju. Iako je model treniran na drugoj domeni, ovdje pokazuje izuzetno dobre rezultate. Posebno dobro radi modul percepcije trake. Model je sposoban jako dobro prepoznati traku, lokalizirati vozilo na traci te prepoznati situacije promjene trake. Modul prepoznavanja automobila je nešto šumovitiji, no to možemo pripisati učenju na drugačijoj domeni pošto auti u simulatoru izgledaju dosta drugačije nego u stvarnosti.
+
+\subsection{Procjena udaljenosti vozila na KITTI datasetu}
+KITTI dataset sadrži preko 40,000 slika snimljenih u vožnji europskim gradovima. U većini slika iz ovog dataseta nema oznaka traka pa ne možemo lokalizirati auto na temelju trake u kojoj se auto nalazi. \\
+U KITTI datasetu na jednoj slici se može nalaziti mnogo automobila, no samo oni najbliži sudjeluju u donošenju odluka. Zato je prostor ispred auta podijeljen na 3 dijela:
+\begin{enumerate}
+	\item Središnje područje, $x \in [-1.6, 1.6]$ metara $\rightarrow$ vozila direktno ispred automobila
+	\item Lijevo područje, $x \in [-12, -1.6)$ metara $\rightarrow$ gdje su vozila na lijevoj strani automobila
+	\item Desno područje, $x \in [1.6, 12)$ metara $\rightarrow$ gdje su vozila na desnoj strani automobila
+\end{enumerate}
+Auti koji su izvan ovog raspona ne uzimaju se u obzir (jer smo ih vjerojatno već prošli). Valja uzeti u obzir i procjenu udaljenosti. Obzirom da su slike u KITTI datasetu malo niže rezolucije, ponovo dijelimo prostor na 2 dijela:
+\begin{enumerate}
+	\item Kratki domet, $x \in [2, 25]$ metara, slike veličine $497 \times 150$ piksela
+	\item Daleki domet, $x \in [15, 55]$ metara, slike veličine $497 \times 150$ piksela
+\end{enumerate}
+Krajnja procjena udaljenosti je kombinacija ove dvije procjene. 
+
+\chapter{Zaključak}
+Deep Drive model je model direktnog pristupa koji se pokazao kao izuzetno dobro rješenje problema autonomne vožnje. Iako treniran na simulaciji (TORCS), jako se dobro snalazi i u stvarnom okruženju. Zbog izmjena u simulatoru (teksture i nijansi asfalta, pukotine na cesti i sl.) model vrlo dobro generalizira i u ne-virtualnom svijetu. Važno je ipak naglasiti da je model treniran na simulatoru morao proći krot par manjih izmjena zbog drugačijih uvijeta u kojima mora odlučivati - ulazni podaci (slike) podijeljene su na nekoliko dijelova radi lakšeg i jednostavnijeg računa te veće pouzdanosti (točnosti). U konačnici, direktni pristup, paradigma u kojoj se parsiraju i uzimaju u obzir samo neke ulazne značajke, zasada daje nabolje rezultate u ovom području i mišljenja sam da bi daljnja istraživanja trebala ići u tom smijeru.
+
+\bibliography{literatura}
+\bibliographystyle{fer}
+
+\chapter{Sažetak}
+U ovom radu predložena je nova paradigma, novi pristup autonomnoj vožnji. Ovakav pristup nazvan je \textbf{direktni pristup}. To je potpuno drugačiji način razmišljanja od dosadašnjih:
+\begin{itemize}
+	\item \textbf{Ponašajni pristup} - direktno mapira podatke sa ulazne slike na konkretnu akciju (u ovom slučaju zakret volana ili pormjena brzine)
+	\item \textbf{Posrednički pristup} - parsiranje cijele slike
+\end{itemize}
+Deep Drive model je model direktnog pristupa, izgrađen pomoću konvolucijske mreže arhitekture AlexNet, koji umjesto gornjih metoda, računa određene atribute, konkretno njih 13, te na temelju tih podataka i podataka o brzini vožnje odlučuje o akcijama koje poduzima. Iako je model treniran u virtualnom okruženju (TORCS simulator), ispitivanjem se pokazalo da, uz male promjene u procesiranju slike (dijeljenju na područja), izuzetno dobro generalizira te je podoban i sposoban djelovati i u stvarnom svijetu.
+
+\end{document}
